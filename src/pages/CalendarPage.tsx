@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { supabase } from '../lib/supabase';
-import { formatDate } from '../lib/utils';
 import {
     Receipt,
     Utensils,
-    CheckSquare,
-    AlertCircle
+    CheckSquare
 } from 'lucide-react';
 
 export function CalendarPage() {

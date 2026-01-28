@@ -26,14 +26,12 @@ export function Meals() {
     const { user } = useAuth();
     const [currentMonth, setCurrentMonth] = useState(new Date());
     const [meals, setMeals] = useState<any[]>([]);
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetchMeals();
     }, [currentMonth]);
 
     const fetchMeals = async () => {
-        setLoading(true);
         const start = startOfMonth(currentMonth).toISOString();
         const end = endOfMonth(currentMonth).toISOString();
 
@@ -44,7 +42,6 @@ export function Meals() {
             .lte('timestamp', end);
 
         if (data) setMeals(data);
-        setLoading(false);
     };
 
     const toggleMeal = async (date: Date, mealType: 'lunch' | 'dinner', existingId?: string) => {

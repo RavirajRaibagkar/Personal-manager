@@ -9,7 +9,7 @@ import {
     AlertCircle,
     Bell
 } from 'lucide-react';
-import { cn, formatDate } from '../lib/utils';
+import { cn } from '../lib/utils';
 import { useAuth } from '../context/AuthContext';
 
 export function Tasks() {

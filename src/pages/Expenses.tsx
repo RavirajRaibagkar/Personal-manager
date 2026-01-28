@@ -3,15 +3,13 @@ import { supabase } from '../lib/supabase';
 import {
     Plus,
     Trash2,
-    Tag,
     Calendar as CalendarIcon,
     DollarSign,
     TrendingDown,
     TrendingUp,
     Wallet,
     ArrowUpCircle,
-    ArrowDownCircle,
-    Clock
+    ArrowDownCircle
 } from 'lucide-react';
 import { cn, formatDate, formatCurrency } from '../lib/utils';
 import { useAuth } from '../context/AuthContext';

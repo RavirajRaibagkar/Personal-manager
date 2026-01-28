@@ -16,10 +16,6 @@ import {
 import {
     TrendingUp,
     CheckCircle2,
-    Utensils,
-    Clock,
-    ArrowUpRight,
-    ArrowDownRight,
     Zap,
     Wallet,
     ArrowDownCircle,
