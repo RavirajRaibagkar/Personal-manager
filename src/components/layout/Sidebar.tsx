@@ -1,4 +1,6 @@
-import { NavLink, useNavigate } from 'react-router-dom';
+'use client';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 import {
     LayoutDashboard,
     Receipt,
@@ -21,42 +23,46 @@ const navItems = [
 
 export function Sidebar({ onNavClick }: { onNavClick?: () => void }) {
     const { signOut, user } = useAuth();
-    const navigate = useNavigate();
+    const router = useRouter();
+    const pathname = usePathname();
 
     const handleSignOut = async () => {
         await signOut();
-        navigate('/login');
+        router.push('/login');
         if (onNavClick) onNavClick();
     };
 
     return (
         <aside className="w-64 bg-card border-r border-border h-full flex flex-col">
             <div className="p-6 hidden lg:block">
-                <h1 className="text-2xl font-bold text-primary flex items-center gap-2">
+                <Link href="/" className="text-2xl font-bold text-primary flex items-center gap-2">
                     <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-primary-foreground">
                         <LayoutDashboard size={20} />
                     </div>
                     Persnl
-                </h1>
+                </Link>
             </div>
 
             <nav className="flex-1 px-4 py-6 lg:py-0 space-y-2">
-                {navItems.map((item) => (
-                    <NavLink
-                        key={item.to}
-                        to={item.to}
-                        onClick={onNavClick}
-                        className={({ isActive }) => cn(
-                            "flex items-center gap-3 px-3 py-2 rounded-lg transition-colors",
-                            isActive
-                                ? "bg-primary text-primary-foreground"
-                                : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
-                        )}
-                    >
-                        <item.icon size={20} />
-                        <span className="font-medium">{item.label}</span>
-                    </NavLink>
-                ))}
+                {navItems.map((item) => {
+                    const isActive = pathname === item.to;
+                    return (
+                        <Link
+                            key={item.to}
+                            href={item.to}
+                            onClick={onNavClick}
+                            className={cn(
+                                "flex items-center gap-3 px-3 py-2 rounded-lg transition-colors",
+                                isActive
+                                    ? "bg-primary text-primary-foreground"
+                                    : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                            )}
+                        >
+                            <item.icon size={20} />
+                            <span className="font-medium">{item.label}</span>
+                        </Link>
+                    )
+                })}
             </nav>
 
             <div className="p-4 border-t border-border">

@@ -1,3 +1,4 @@
+'use client';
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import {
@@ -22,8 +23,8 @@ import {
     isAfter
 } from 'date-fns';
 
-export function Meals() {
-    const { user } = useAuth();
+export default function Meals() {
+    const auth = useAuth(); const user = auth?.user;
     const [currentMonth, setCurrentMonth] = useState(new Date());
     const [meals, setMeals] = useState<any[]>([]);
 

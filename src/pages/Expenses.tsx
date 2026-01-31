@@ -1,3 +1,4 @@
+'use client';
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import {
@@ -14,8 +15,8 @@ import {
 import { cn, formatDate, formatCurrency } from '../lib/utils';
 import { useAuth } from '../context/AuthContext';
 
-export function Expenses() {
-    const { user } = useAuth();
+export default function Expenses() {
+    const auth = useAuth(); const user = auth?.user;
     const [transactions, setTransactions] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [isAdding, setIsAdding] = useState(false);

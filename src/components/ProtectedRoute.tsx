@@ -1,9 +1,17 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
+'use client';
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '../context/AuthContext';
 
 export function ProtectedRoute({ children }: { children: React.ReactNode }) {
     const { user, loading } = useAuth();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (!loading && !user) {
+            router.push('/login');
+        }
+    }, [user, loading, router]);
 
     if (loading) {
         return (
@@ -14,7 +22,7 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
     }
 
     if (!user) {
-        return <Navigate to="/login" />;
+        return null;
     }
 
     return <>{children}</>;

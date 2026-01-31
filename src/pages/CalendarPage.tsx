@@ -1,3 +1,4 @@
+'use client';
 import { useEffect, useState } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -9,7 +10,7 @@ import {
     CheckSquare
 } from 'lucide-react';
 
-export function CalendarPage() {
+export default function CalendarPage() {
     const [events, setEvents] = useState<any[]>([]);
 
     useEffect(() => {

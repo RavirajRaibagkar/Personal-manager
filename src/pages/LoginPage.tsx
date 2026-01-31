@@ -1,15 +1,16 @@
+'use client';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { supabase } from '../lib/supabase';
 import { LayoutDashboard, Mail, Lock, Loader2 } from 'lucide-react';
 
-export function LoginPage() {
+export default function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [isSignUp, setIsSignUp] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const navigate = useNavigate();
+    const router = useRouter();
 
     const handleAuth = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -24,7 +25,7 @@ export function LoginPage() {
             } else {
                 const { error } = await supabase.auth.signInWithPassword({ email, password });
                 if (error) throw error;
-                navigate('/');
+                router.push('/');
             }
         } catch (err: any) {
             setError(err.message);

@@ -1,0 +1,12 @@
+{
+  "/CalendarPage": "pages/CalendarPage.html",
+  "/Dashboard": "pages/Dashboard.html",
+  "/Expenses": "pages/Expenses.html",
+  "/LoginPage": "pages/LoginPage.html",
+  "/Meals": "pages/Meals.html",
+  "/Tasks": "pages/Tasks.html",
+  "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
+  "/_error": "pages/_error.js",
+  "/404": "pages/404.html"
+}

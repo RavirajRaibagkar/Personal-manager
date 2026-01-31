@@ -1,0 +1,10 @@
+{
+  "/(dashboard)/calendar/page": "/calendar",
+  "/(dashboard)/expenses/page": "/expenses",
+  "/(dashboard)/meals/page": "/meals",
+  "/(dashboard)/page": "/",
+  "/(dashboard)/tasks/page": "/tasks",
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/login/page": "/login"
+}

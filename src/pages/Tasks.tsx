@@ -1,3 +1,4 @@
+'use client';
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import {
@@ -12,8 +13,8 @@ import {
 import { cn } from '../lib/utils';
 import { useAuth } from '../context/AuthContext';
 
-export function Tasks() {
-    const { user } = useAuth();
+export default function Tasks() {
+    const auth = useAuth(); const user = auth?.user;
     const [tasks, setTasks] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [isAdding, setIsAdding] = useState(false);

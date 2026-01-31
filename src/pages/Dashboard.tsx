@@ -1,3 +1,4 @@
+'use client';
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import {
@@ -23,7 +24,7 @@ import {
 } from 'lucide-react';
 import { cn, formatCurrency } from '../lib/utils';
 
-export function Dashboard() {
+export default function Dashboard() {
     const [stats, setStats] = useState({
         totalIncome: 0,
         totalExpenses: 0,
