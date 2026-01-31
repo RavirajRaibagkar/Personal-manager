@@ -118,6 +118,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calendar$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Calendar$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/calendar.js [app-ssr] (ecmascript) <export default as Calendar>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$log$2d$out$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__LogOut$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/log-out.js [app-ssr] (ecmascript) <export default as LogOut>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__User$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/user.js [app-ssr] (ecmascript) <export default as User>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/users.js [app-ssr] (ecmascript) <export default as Users>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$AuthContext$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/context/AuthContext.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/utils.ts [app-ssr] (ecmascript)");
 'use client';
@@ -155,9 +156,17 @@ const navItems = [
     }
 ];
 function Sidebar({ onNavClick }) {
-    const { signOut, user } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$AuthContext$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useAuth"])();
+    const { signOut, user, profile } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$AuthContext$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useAuth"])();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
     const pathname = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["usePathname"])();
+    const filteredNavItems = profile?.role === 'parent' ? [
+        ...navItems,
+        {
+            to: '/parent',
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"],
+            label: 'Parent Portal'
+        }
+    ] : navItems;
     const handleSignOut = async ()=>{
         await signOut();
         router.push('/login');
@@ -178,29 +187,29 @@ function Sidebar({ onNavClick }) {
                                 size: 20
                             }, void 0, false, {
                                 fileName: "[project]/src/components/layout/Sidebar.tsx",
-                                lineNumber: 40,
+                                lineNumber: 45,
                                 columnNumber: 25
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/layout/Sidebar.tsx",
-                            lineNumber: 39,
+                            lineNumber: 44,
                             columnNumber: 21
                         }, this),
                         "Persnl"
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/layout/Sidebar.tsx",
-                    lineNumber: 38,
+                    lineNumber: 43,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/layout/Sidebar.tsx",
-                lineNumber: 37,
+                lineNumber: 42,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
                 className: "flex-1 px-4 py-6 lg:py-0 space-y-2",
-                children: navItems.map((item)=>{
+                children: filteredNavItems.map((item)=>{
                     const isActive = pathname === item.to;
                     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                         href: item.to,
@@ -211,7 +220,7 @@ function Sidebar({ onNavClick }) {
                                 size: 20
                             }, void 0, false, {
                                 fileName: "[project]/src/components/layout/Sidebar.tsx",
-                                lineNumber: 61,
+                                lineNumber: 66,
                                 columnNumber: 29
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -219,19 +228,19 @@ function Sidebar({ onNavClick }) {
                                 children: item.label
                             }, void 0, false, {
                                 fileName: "[project]/src/components/layout/Sidebar.tsx",
-                                lineNumber: 62,
+                                lineNumber: 67,
                                 columnNumber: 29
                             }, this)
                         ]
                     }, item.to, true, {
                         fileName: "[project]/src/components/layout/Sidebar.tsx",
-                        lineNumber: 50,
+                        lineNumber: 55,
                         columnNumber: 25
                     }, this);
                 })
             }, void 0, false, {
                 fileName: "[project]/src/components/layout/Sidebar.tsx",
-                lineNumber: 46,
+                lineNumber: 51,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -246,12 +255,12 @@ function Sidebar({ onNavClick }) {
                                     size: 16
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/layout/Sidebar.tsx",
-                                    lineNumber: 71,
+                                    lineNumber: 76,
                                     columnNumber: 25
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/layout/Sidebar.tsx",
-                                lineNumber: 70,
+                                lineNumber: 75,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -261,18 +270,18 @@ function Sidebar({ onNavClick }) {
                                     children: user?.email
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/layout/Sidebar.tsx",
-                                    lineNumber: 74,
+                                    lineNumber: 79,
                                     columnNumber: 25
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/layout/Sidebar.tsx",
-                                lineNumber: 73,
+                                lineNumber: 78,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/layout/Sidebar.tsx",
-                        lineNumber: 69,
+                        lineNumber: 74,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -283,7 +292,7 @@ function Sidebar({ onNavClick }) {
                                 size: 20
                             }, void 0, false, {
                                 fileName: "[project]/src/components/layout/Sidebar.tsx",
-                                lineNumber: 81,
+                                lineNumber: 86,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -291,25 +300,25 @@ function Sidebar({ onNavClick }) {
                                 children: "Sign Out"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/layout/Sidebar.tsx",
-                                lineNumber: 82,
+                                lineNumber: 87,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/layout/Sidebar.tsx",
-                        lineNumber: 77,
+                        lineNumber: 82,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/layout/Sidebar.tsx",
-                lineNumber: 68,
+                lineNumber: 73,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/layout/Sidebar.tsx",
-        lineNumber: 36,
+        lineNumber: 41,
         columnNumber: 9
     }, this);
 }
@@ -558,7 +567,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$AuthContex
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ProtectedRoute$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ProtectedRoute.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$layout$2f$MainLayout$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/layout/MainLayout.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useTaskNotifications$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/hooks/useTaskNotifications.ts [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-ssr] (ecmascript)");
 'use client';
+;
 ;
 ;
 ;
@@ -566,14 +577,26 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useTaskNotif
 ;
 function ProtectedWrapper({ children }) {
     const { user, loading } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$AuthContext$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useAuth"])();
+    const pathname = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["usePathname"])();
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useTaskNotifications$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useTaskNotifications"])();
     if (loading) return null;
     if (!user) return null;
+    // Use a custom standalone layout for the Parent Portal
+    if (pathname.startsWith('/parent')) {
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "min-h-screen bg-[#020617]",
+            children: children
+        }, void 0, false, {
+            fileName: "[project]/src/app/(dashboard)/layout.tsx",
+            lineNumber: 21,
+            columnNumber: 13
+        }, this);
+    }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$layout$2f$MainLayout$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MainLayout"], {
         children: children
     }, void 0, false, {
         fileName: "[project]/src/app/(dashboard)/layout.tsx",
-        lineNumber: 16,
+        lineNumber: 28,
         columnNumber: 9
     }, this);
 }
@@ -583,12 +606,12 @@ function DashboardLayout({ children }) {
             children: children
         }, void 0, false, {
             fileName: "[project]/src/app/(dashboard)/layout.tsx",
-            lineNumber: 29,
+            lineNumber: 41,
             columnNumber: 13
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/(dashboard)/layout.tsx",
-        lineNumber: 28,
+        lineNumber: 40,
         columnNumber: 9
     }, this);
 }

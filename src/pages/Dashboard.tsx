@@ -20,11 +20,13 @@ import {
     Zap,
     Wallet,
     ArrowDownCircle,
-    ArrowUpCircle
+    ArrowUpCircle,
+    Users
 } from 'lucide-react';
 import { cn, formatCurrency } from '../lib/utils';
 
 export default function Dashboard() {
+    const [userId, setUserId] = useState<string | null>(null);
     const [stats, setStats] = useState({
         totalIncome: 0,
         totalExpenses: 0,
@@ -38,6 +40,9 @@ export default function Dashboard() {
 
     useEffect(() => {
         fetchDashboardData();
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            setUserId(session?.user?.id || null);
+        });
     }, []);
 
     const fetchDashboardData = async () => {
@@ -135,6 +140,35 @@ export default function Dashboard() {
                     trend="Overall"
                     trendUp={true}
                 />
+            </div>
+
+            {/* Family Connection Section */}
+            <div className="bg-card p-6 rounded-[2rem] border-2 border-dashed border-primary/20 mb-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+                        <Users size={24} />
+                    </div>
+                    <div>
+                        <h3 className="font-bold text-lg">Family Connection</h3>
+                        <p className="text-sm text-muted-foreground">Share this ID with your parent to link accounts.</p>
+                    </div>
+                </div>
+                <div className="flex items-center gap-2 bg-muted p-2 rounded-2xl w-full md:w-auto">
+                    <code className="px-4 py-2 font-mono text-xs overflow-hidden text-ellipsis whitespace-nowrap max-w-[200px]">
+                        {userId || "Loading Family ID..."}
+                    </code>
+                    <button
+                        onClick={() => {
+                            if (userId) {
+                                navigator.clipboard.writeText(userId);
+                                alert("Family ID copied to clipboard!");
+                            }
+                        }}
+                        className="px-6 py-2 bg-primary text-primary-foreground rounded-xl font-bold text-sm hover:ring-4 hover:ring-primary/20 transition-all active:scale-95"
+                    >
+                        Copy ID
+                    </button>
+                </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">

@@ -7,10 +7,10 @@
   "pages": {
     "/Meals": [
       "static/chunks/f5d866964cf101a1.js",
-      "static/chunks/aaeec28a49c042f5.js",
+      "static/chunks/9510b0245a12a568.js",
       "static/chunks/70305deebb5340b6.js",
-      "static/chunks/d898a8fd294bc1c2.js",
-      "static/chunks/turbopack-adb6b9c4ef7db3c8.js"
+      "static/chunks/cee439469f646ffc.js",
+      "static/chunks/turbopack-a4c105b6e676c3ea.js"
     ]
   },
   "ampFirstPages": []

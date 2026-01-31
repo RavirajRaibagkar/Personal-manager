@@ -6,11 +6,11 @@
   "rootMainFiles": [],
   "pages": {
     "/LoginPage": [
-      "static/chunks/b6c417184467ecf3.js",
-      "static/chunks/b15fe55482d94041.js",
-      "static/chunks/d898a8fd294bc1c2.js",
+      "static/chunks/1c832c59c95cc21f.js",
+      "static/chunks/8139996b99e059f1.js",
+      "static/chunks/cee439469f646ffc.js",
       "static/chunks/70305deebb5340b6.js",
-      "static/chunks/turbopack-e6890b118019efdd.js"
+      "static/chunks/turbopack-6798278f51397795.js"
     ]
   },
   "ampFirstPages": []

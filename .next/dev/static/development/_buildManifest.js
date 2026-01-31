@@ -10,6 +10,8 @@ self.__BUILD_MANIFEST = {
     "/Expenses",
     "/LoginPage",
     "/Meals",
+    "/ParentDashboard",
+    "/ParentLoginPage",
     "/Tasks",
     "/_app",
     "/_error"

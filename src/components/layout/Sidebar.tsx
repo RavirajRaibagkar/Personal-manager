@@ -8,7 +8,8 @@ import {
     CheckSquare,
     Calendar as CalendarIcon,
     LogOut,
-    User
+    User,
+    Users
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { cn } from '../../lib/utils';
@@ -22,9 +23,13 @@ const navItems = [
 ];
 
 export function Sidebar({ onNavClick }: { onNavClick?: () => void }) {
-    const { signOut, user } = useAuth();
+    const { signOut, user, profile } = useAuth();
     const router = useRouter();
     const pathname = usePathname();
+
+    const filteredNavItems = profile?.role === 'parent'
+        ? [...navItems, { to: '/parent', icon: Users, label: 'Parent Portal' }]
+        : navItems;
 
     const handleSignOut = async () => {
         await signOut();
@@ -44,7 +49,7 @@ export function Sidebar({ onNavClick }: { onNavClick?: () => void }) {
             </div>
 
             <nav className="flex-1 px-4 py-6 lg:py-0 space-y-2">
-                {navItems.map((item) => {
+                {filteredNavItems.map((item) => {
                     const isActive = pathname === item.to;
                     return (
                         <Link

@@ -89,6 +89,18 @@
       "namedRegex": "^/Meals(?:/)?$"
     },
     {
+      "page": "/parent",
+      "regex": "^/parent(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/parent(?:/)?$"
+    },
+    {
+      "page": "/ParentDashboard",
+      "regex": "^/ParentDashboard(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ParentDashboard(?:/)?$"
+    },
+    {
       "page": "/tasks",
       "regex": "^/tasks(?:/)?$",
       "routeKeys": {},

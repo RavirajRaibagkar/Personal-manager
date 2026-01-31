@@ -3,6 +3,7 @@
   "/(dashboard)/expenses/page": "app/(dashboard)/expenses/page.js",
   "/(dashboard)/meals/page": "app/(dashboard)/meals/page.js",
   "/(dashboard)/page": "app/(dashboard)/page.js",
+  "/(dashboard)/parent/page": "app/(dashboard)/parent/page.js",
   "/(dashboard)/tasks/page": "app/(dashboard)/tasks/page.js",
   "/_global-error/page": "app/_global-error/page.js",
   "/_not-found/page": "app/_not-found/page.js",

@@ -10,6 +10,7 @@ export default function LoginPage() {
     const [loading, setLoading] = useState(false);
     const [isSignUp, setIsSignUp] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [role, setRole] = useState<'parent' | 'child'>('child');
     const router = useRouter();
 
     const handleAuth = async (e: React.FormEvent) => {
@@ -19,8 +20,30 @@ export default function LoginPage() {
 
         try {
             if (isSignUp) {
-                const { error } = await supabase.auth.signUp({ email, password });
+                const { data, error } = await supabase.auth.signUp({
+                    email,
+                    password,
+                    options: {
+                        data: {
+                            role: role
+                        }
+                    }
+                });
                 if (error) throw error;
+
+                if (data.user) {
+                    const { error: profileError } = await supabase
+                        .from('profiles')
+                        .insert([
+                            {
+                                id: data.user.id,
+                                full_name: email.split('@')[0],
+                                role: role
+                            }
+                        ]);
+                    if (profileError) throw profileError;
+                }
+
                 alert('Check your email for confirmation link!');
             } else {
                 const { error } = await supabase.auth.signInWithPassword({ email, password });
@@ -78,6 +101,32 @@ export default function LoginPage() {
                                 placeholder="Password"
                             />
                         </div>
+
+                        {/* Role Selection */}
+                        {isSignUp && (
+                            <div className="grid grid-cols-2 gap-4 mt-4">
+                                <button
+                                    type="button"
+                                    onClick={() => setRole('child')}
+                                    className={`py-2 px-4 rounded-lg border transition-all ${role === 'child'
+                                            ? 'bg-primary text-primary-foreground border-primary'
+                                            : 'bg-background border-border hover:border-primary'
+                                        }`}
+                                >
+                                    Child Account
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => setRole('parent')}
+                                    className={`py-2 px-4 rounded-lg border transition-all ${role === 'parent'
+                                            ? 'bg-primary text-primary-foreground border-primary'
+                                            : 'bg-background border-border hover:border-primary'
+                                        }`}
+                                >
+                                    Parent Account
+                                </button>
+                            </div>
+                        )}
                     </div>
 
                     <button
@@ -95,7 +144,10 @@ export default function LoginPage() {
 
                 <div className="text-center">
                     <button
-                        onClick={() => setIsSignUp(!isSignUp)}
+                        onClick={() => {
+                            setIsSignUp(!isSignUp);
+                            setError(null);
+                        }}
                         className="text-sm text-primary hover:underline font-medium"
                     >
                         {isSignUp ? 'Already have an account? Sign In' : "Don't have an account? Sign Up"}
